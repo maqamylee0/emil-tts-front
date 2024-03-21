@@ -1,24 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import { Document, Page } from 'react-pdf';
 
 function App() {
+   const [file, setFile] = useState();
+  const [numPages, setNumPages] = useState(null);
+   function onFileChange(event) {
+    setFile(event.target.files[0]);
+  }
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
   return (
+    <>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <h2>Upload a PDF File</h2>
+      <input type="file" onChange={onFileChange} accept=".pdf" />
+
+      <h2>PDF Content:</h2>
+      {file && (
+        <Document
+          file={file}
+          onLoadSuccess={onDocumentLoadSuccess}
         >
-          Learn React
-        </a>
-      </header>
+          {Array.from(new Array(numPages), (el, index) => (
+            <Page key={`page_${index + 1}`} pageNumber={index + 1} />
+          ))}
+        </Document>
+      )}
+        </div>
+
     </div>
+    </>
+    
   );
 }
 
