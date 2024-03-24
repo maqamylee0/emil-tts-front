@@ -1,8 +1,13 @@
 import './App.css';
-import React, { useState } from 'react';
-import { Document, Page } from 'react-pdf';
+import {React,useState } from 'react';
+import { Document, Page, pdfjs } from 'react-pdf';
 
 function App() {
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js',
+  import.meta.url,
+).toString();
+
    const [file, setFile] = useState();
   const [numPages, setNumPages] = useState(null);
    function onFileChange(event) {
