@@ -1,0 +1,54 @@
+* {
+  font-family: 'Nunito', sans-serif;
+  font-size: 30px;
+  margin:auto;
+    /* background: black; */
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+h2 {
+    font-size: 40;
+}
+.uploadImg{
+  background: linear-gradient(to right, #f5b5eb, #df9dca); /* Green gradient */
+    /* width: 100px;
+    height: 100px; */
+}
+img {
+  border-radius: 50%;
+  width: 300px;
+    height: 200px;
+}
+.Upload {
+  background: linear-gradient(to right, #eccce7, #e536ad); /* Green gradient */
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* width: 100vw; */
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif; /* This will apply the Nunito font */
+
+  /* box-sizing: border-box; */
+}
+.fileUpload{
+    color: beige;
+    background-color: #e536ad !important;
+    /* width: 20vh; */
+
+
+}
+input{
+    background-color: wheat !important;
+    width: 70%;
+
+}

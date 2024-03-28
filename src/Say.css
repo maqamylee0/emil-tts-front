@@ -5,10 +5,25 @@
 
 } */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
 * {
   font-family: 'Nunito', sans-serif;
+  font-size: 30px;
+  margin:auto;
+    background: black;
+
 }
-.App {
+.header{
+  color: rgb(204, 41, 202);
+  display:flex;
+  background-color: wheat;
+  h2{
+    background-color: wheat;
+  }
+}
+
+.Say {
+  
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -19,41 +34,22 @@
   background: linear-gradient(to right, #eccce7, #e536ad); /* Green gradient */
   margin: 0;
   padding: 0;
-  /* box-sizing: border-box; */
   font-family: 'Nunito', sans-serif; /* This will apply the Nunito font */
 
+  /* box-sizing: border-box; */
 }
 
 .audio-controls-container {
   position: fixed;
   right: 0;
-  top: 10%;
+  top: 15%;
   z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 
 }
-.playing {
-  background-color: #00ff02; /* Change this to the color you want */
-}
 
-.Document div .react-pdf__Page {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 button {
   display: inline-block;
   padding: 10px 20px;
@@ -64,15 +60,39 @@ button {
   color: white; /* This is the text color */
   text-decoration: none;
   transition: background-color 0.3s ease; /* This will animate the background color change */
-    font-family: 'Nunito', sans-serif; /* This will apply the Nunito font */
+  font-family: 'Nunito', sans-serif; /* This will apply the Nunito font */
 
 }
 
 button:hover {
   background-color: #34a8eb; /* This is the background color of the button when you hover over it */
 }
+.audio-button {
+  background: linear-gradient(to right, #eccce7, #e536ad); /* Green gradient */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 50px; 
+}
+.playing {
+  background-color: #2f8294; /* Change this to the color you want */
+}
 
-.App-header {
+.Document div .react-pdf__Page {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-family: 'Nunito', sans-serif; /* This will apply the Nunito font */
+
+}
+
+.Say-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -80,7 +100,7 @@ button:hover {
   align-items: center;
   justify-content: center;
   /* font-size: calc(10px + 2vmin); */
-  color: bisque;
+  /* color: bisque; */
     font-family: 'Nunito', sans-serif; /* This will apply the Nunito font */
 
 }
@@ -97,24 +117,3 @@ button:hover {
     transform: rotate(360deg);
   }
 }
-.fileInput {
-  display: none;
-}
-
-/* Style the label */
-.fileLabel {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #61dafb;
-  color: white;
-  border-radius: 50px;
-  font-family: 'Nunito', sans-serif;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.fileLabel:hover {
-  background-color: #34a8eb;
-}
-
-

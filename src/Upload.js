@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './Upload.css';
 
 function UploadPage({onUpload}) {
 //   const [file, setFile] = useState();
@@ -12,12 +12,22 @@ function UploadPage({onUpload}) {
   }
 
   return (
-    <div className="App">
-      <div className='header'>
+    <>
+     <div className='header'>
         <h2>Upload a PDF File</h2>
-        <input type="file" onChange={onFileChange} accept=".pdf" />
-      </div>
+        </div>
+         <div className="Upload">
+          {/* <div className='uploadImg'> */}
+                 <img src="audio.jpg" alt="Headsets on a books" />
+                         <input type="file" onChange={onFileChange} accept=".pdf" />
+
+           {/* <h4>Listen, Think, Understand</h4> */}
+          {/* </div> */}
+        {/* <div className='fileUpload'> */}
+      {/* </div> */}
     </div>
+    </>
+   
   );
 }
 
