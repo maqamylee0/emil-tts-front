@@ -21,6 +21,10 @@
     background-color: wheat;
   }
 }
+.page {
+ width: 100hw;
+ font-size: large;
+}
 
 .Say {
   

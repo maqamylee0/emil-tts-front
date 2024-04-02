@@ -82,6 +82,7 @@ function Say({ file }) {
   }, [file, numPages, prefacePageNumber]);
 
   const playAudio = (audioUrl, index) => {
+  if (!audios[index]) {
     const audio = new Audio(audioUrl);
     audio.oncanplaythrough = () => {
       audio.play().then(() => {
@@ -103,12 +104,39 @@ function Say({ file }) {
       [index]: audio,
     }));
     pageRefs.current[index].scrollIntoView({ behavior: "smooth" });
-  };
+  } else {
+    audios[index].play();
+  }
+};
+
+  // const playAudio = (audioUrl, index) => {
+  //   const audio = new Audio(audioUrl);
+  //   audio.oncanplaythrough = () => {
+  //     audio.play().then(() => {
+  //       setPlayingAudioIndex(index);
+  //       setPlayingAudio(audio);
+  //       if (pageRefs.current[index]) {
+  //         pageRefs.current[index].scrollIntoView({ behavior: "smooth" });
+  //       }
+  //     });
+
+  //     audio.onended = () => {
+  //       if (index + 1 < audioUrls.length) {
+  //         playAudio(audioUrls[index + 1], index + 1);
+  //       }
+  //     };
+  //   };
+  //   setAudios((prevAudios) => ({
+  //     ...prevAudios,
+  //     [index]: audio,
+  //   }));
+  //   pageRefs.current[index].scrollIntoView({ behavior: "smooth" });
+  // };
   function stopAudio(index) {
     if (playingAudio) {
       playingAudio.pause();
-      playingAudio.currentTime = 0;
-      setPlayingAudioIndex(null);
+      // playingAudio.currentTime = 0;
+      // setPlayingAudioIndex(null);
       setPlayingAudio(null); // Add this line
 
       setAudios((prevAudios) => {
@@ -122,6 +150,12 @@ function Say({ file }) {
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
+
+  function resumeAudio(index) {
+  if (audios[index]) {
+    audios[index].play();
+  }
+}
   return (
     <>
       <div className="header">
@@ -148,6 +182,9 @@ function Say({ file }) {
                   >
                     Stop Audio {index + 1}
                   </button>
+                  <button className="audio-button" onClick={() => resumeAudio(index)}>
+  Resume Audio {index + 1}
+</button>
                 </>
               ) : (
                 <button
@@ -166,7 +203,7 @@ function Say({ file }) {
               new Array(numPages),
               (el, index) =>
                 index === playingAudioIndex && (
-                  <PageWrapper
+                  <PageWrapper className="page"
                     key={`page_${index + 1}`}
                     pageNumber={index + prefacePageNumber}
                     ref={addPageRef}

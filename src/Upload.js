@@ -18,7 +18,7 @@ function UploadPage({onUpload}) {
         </div>
          <div className="Upload">
           {/* <div className='uploadImg'> */}
-                 <img src="audio.jpg" alt="Headsets on a books" />
+                 {/* <img src="audio.jpg" alt="Headsets on a books" /> */}
                          <input type="file" onChange={onFileChange} accept=".pdf" />
 
            {/* <h4>Listen, Think, Understand</h4> */}
