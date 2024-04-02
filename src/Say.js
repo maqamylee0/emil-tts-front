@@ -12,6 +12,8 @@ function Say({ file }) {
   // const prefacePageNumber = useRef(null);
   const [playingAudioIndex, setPlayingAudioIndex] = useState(0);
   const [playingAudio, setPlayingAudio] = useState({});
+const [pausedTime, setPausedTime] = useState(null);
+
   const [prefacePageNumber, setPrefacePageNumber] = useState(null);
 
   // const [audioUrl, setAudioUrl] = useState(null);
@@ -132,18 +134,19 @@ function Say({ file }) {
   //   }));
   //   pageRefs.current[index].scrollIntoView({ behavior: "smooth" });
   // };
-  function stopAudio(index) {
+  function pauseAudio(index) {
     if (playingAudio) {
-      playingAudio.pause();
-      // playingAudio.currentTime = 0;
-      // setPlayingAudioIndex(null);
-      setPlayingAudio(null); // Add this line
+          setPausedTime(playingAudio.currentTime);
 
-      setAudios((prevAudios) => {
-        const newAudios = { ...prevAudios };
-        delete newAudios[index];
-        return newAudios;
-      });
+      playingAudio.pause();
+      // setPlayingAudioIndex(null);
+      // setPlayingAudio(null); // Add this line
+
+      // setAudios((prevAudios) => {
+      //   const newAudios = { ...prevAudios };
+      //   delete newAudios[index];
+      //   return newAudios;
+      // });
     }
   }
 
@@ -151,10 +154,16 @@ function Say({ file }) {
     setNumPages(numPages);
   }
 
-  function resumeAudio(index) {
-  if (audios[index]) {
+ function resumeAudio(index) {console.log("resuming")
+  if (audios[index] && audios[index].paused) {
+    audios[index].currentTime = pausedTime;
     audios[index].play();
+    setPlayingAudio(audios[index]);
+    setPlayingAudioIndex(index);
   }
+
+
+
 }
   return (
     <>
@@ -178,9 +187,9 @@ function Say({ file }) {
                   </button>
                   <button
                     className="audio-button"
-                    onClick={() => stopAudio(index)}
+                    onClick={() => pauseAudio(index)}
                   >
-                    Stop Audio {index + 1}
+                    Pause Audio {index + 1}
                   </button>
                   <button className="audio-button" onClick={() => resumeAudio(index)}>
   Resume Audio {index + 1}
